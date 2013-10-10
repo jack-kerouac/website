@@ -45,11 +45,14 @@ module.exports = function (grunt) {
                 tasks: ['livereload']
             }
         },
+        livereload: {
+            port: 16001,
+        },
         connect: {
             options: {
-                port: 9000,
                 // change this to '0.0.0.0' to access the server from outside
-                hostname: 'localhost'
+                hostname: process.env.IP,
+                port: process.env.PORT
             },
             livereload: {
                 options: {
@@ -84,7 +87,7 @@ module.exports = function (grunt) {
         },
         open: {
             server: {
-                path: 'http://localhost:<%= connect.options.port %>'
+                path: 'http://<%= connect.options.hostname %>:<%= connect.options.port %>'
             }
         },
         clean: {
@@ -269,7 +272,8 @@ module.exports = function (grunt) {
             'compass:server',
             'livereload-start',
             'connect:livereload',
-            'open',
+            // FLORIAN RAMPP: Cloud9 is not capable of opening URLs
+            //open',
             'watch'
         ]);
     });
