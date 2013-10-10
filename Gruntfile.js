@@ -46,6 +46,10 @@ module.exports = function (grunt) {
             }
         },
         livereload: {
+            // The port where the livereload server is started.
+            // From there, the livereload.js script is loaded. A websocket
+            // connection is established to this port as well in order to
+            // communicate changes of the website to the browser.
             port: 16001,
         },
         connect: {
@@ -87,7 +91,7 @@ module.exports = function (grunt) {
         },
         open: {
             server: {
-                path: 'http://<%= connect.options.hostname %>:<%= connect.options.port %>'
+                path: 'http://localhost:<%= connect.options.port %>'
             }
         },
         clean: {
